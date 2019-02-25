@@ -8,7 +8,7 @@ namespace FakeHttpClient.Tests
     public class Tests
     {
         [Test]
-        public void When_test()
+        public void When_uri_then_status_code()
         {
             MockableHttpMessageHandler messageHandler = new MockableHttpMessageHandler();
 
