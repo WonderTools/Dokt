@@ -19,16 +19,24 @@ namespace FakeHttpClient
 
         public Rule WhenUriStartsWith(string segment)
         {
-            _entryConditions.Add(x => x.RequestUri.AbsoluteUri.StartsWith(segment));
+            _entryConditions.Add(x => x.RequestUri.OriginalString.StartsWith(segment));
             return this;
         }
 
+        public Rule WhenUriContains(string segment)
+        {
+            _entryConditions.Add(x => x.RequestUri.AbsoluteUri.Contains(segment));
+            return this;
+        }
+
+        public Rule WhenUriPort(int port)
+        {
+            _entryConditions.Add(x => x.RequestUri.Port.Equals(port));
+            return this;
+        }
         
-        //when uri contains
         //When Uri Predicate<string>
         //When UriSheme
-        //When UriPortNumber
-
 
         public Rule UseStatusCode(HttpStatusCode statusCode)
         {
