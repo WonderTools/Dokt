@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>WonderTools.FakeHttpClient.Tests</RootNamespace>
+
+    <AssemblyName>WonderTools.FakeHttpClient.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
