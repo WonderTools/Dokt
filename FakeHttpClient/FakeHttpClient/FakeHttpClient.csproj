@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>WonderTools.FakeHttpClient</RootNamespace>
+    <AssemblyName>WonderTools.FakeHttpClient</AssemblyName>
   </PropertyGroup>
 
 </Project>
