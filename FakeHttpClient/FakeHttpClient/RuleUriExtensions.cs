@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using FakeHttpClient;
 
-namespace FakeHttpClient
+namespace WonderTools.FakeHttpClient
 {
     public static class RuleUriExtensions
     {
@@ -27,6 +27,30 @@ namespace FakeHttpClient
         public static Rule WhenUriPort(this Rule rule, int port)
         {
             rule.AddEntryCondition(x => x.RequestUri.Port.Equals(port));
+            return rule;
+        }
+
+        public static Rule WhenUriScheme(this Rule rule, string scheme)
+        {
+            rule.AddEntryCondition(x => x.RequestUri.Scheme.Equals(scheme));
+            return rule;
+        }
+
+        public static Rule WhenUriAuthority(this Rule rule, string authority)
+        {
+            rule.AddEntryCondition(x => x.RequestUri.Authority.Equals(authority));
+            return rule;
+        }
+
+        public static Rule WhenUriWithQuery(this Rule rule, string query)
+        {
+            rule.AddEntryCondition(x => x.RequestUri.Query.Equals(query));
+            return rule;
+        }
+
+        public static Rule WhenUriHasSegment(this Rule rule, string segment)
+        {
+            rule.AddEntryCondition(x => x.RequestUri.Segments.Contains(segment));
             return rule;
         }
     }

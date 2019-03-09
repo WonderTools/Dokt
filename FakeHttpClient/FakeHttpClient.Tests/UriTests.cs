@@ -1,9 +1,10 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using FakeHttpClient;
 using NUnit.Framework;
 
-namespace FakeHttpClient.Tests
+namespace WonderTools.FakeHttpClient.Tests
 {
     public class UriTests
     {
@@ -68,10 +69,66 @@ namespace FakeHttpClient.Tests
                 .UseStatusCode(HttpStatusCode.Accepted);
             
 
-            var response1 = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
+            var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
                 .Result;
-            Assert.AreEqual(responseHttpCode, response1.StatusCode);
+            Assert.AreEqual(responseHttpCode, response.StatusCode);
             
+        }
+
+        [Test]
+        public void When_uri_scheme_then_status_code()
+        {
+            var requestUri = new Uri("https://ip:80//www.test.com");
+            var responseHttpCode = HttpStatusCode.Accepted;
+
+            _messageHandler.BuildRule().WhenUriScheme("https")
+                .UseStatusCode(HttpStatusCode.Accepted);
+
+            var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
+                .Result;
+            Assert.AreEqual(responseHttpCode, response.StatusCode);
+        }
+
+        [Test]
+        public void When_uri_authority_then_status_code()
+        {
+            var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
+            var responseHttpCode = HttpStatusCode.Accepted;
+
+            _messageHandler.BuildRule().WhenUriAuthority("ip:80")
+                .UseStatusCode(HttpStatusCode.Accepted);
+
+            var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
+                .Result;
+            Assert.AreEqual(responseHttpCode, response.StatusCode);
+        }
+
+        [Test]
+        public void When_uri_has_query_then_status_code()
+        {
+            var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
+            var responseHttpCode = HttpStatusCode.Accepted;
+
+            _messageHandler.BuildRule().WhenUriWithQuery("?q=abc")
+                .UseStatusCode(HttpStatusCode.Accepted);
+
+            var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
+                .Result;
+            Assert.AreEqual(responseHttpCode, response.StatusCode);
+        }
+
+        [Test]
+        public void When_uri_has_segment_then_status_code()
+        {
+            var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
+            var responseHttpCode = HttpStatusCode.Accepted;
+
+            _messageHandler.BuildRule().WhenUriHasSegment("search")
+                .UseStatusCode(HttpStatusCode.Accepted);
+
+            var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
+                .Result;
+            Assert.AreEqual(responseHttpCode, response.StatusCode);
         }
     }
 }
