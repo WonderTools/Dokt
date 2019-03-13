@@ -7,7 +7,8 @@ namespace WonderTools.FakeHttpClient
     public class Rule
     {
         Func<Exception> _exceptionFactory;
-        List<Action<HttpResponseMessage>> _modifiers = new List<Action<HttpResponseMessage>>();
+        List<Action<HttpResponseMessage, HttpRequestMessage>> 
+            _responseModifiers = new List<Action<HttpResponseMessage, HttpRequestMessage>>();
         List<Predicate<HttpRequestMessage>> _entryConditions = new List<Predicate<HttpRequestMessage>>();
 
         public void AddEntryCondition(Predicate<HttpRequestMessage> entryCondition)
@@ -15,9 +16,9 @@ namespace WonderTools.FakeHttpClient
             _entryConditions.Add(entryCondition);
         }
 
-        public void AddModifier(Action<HttpResponseMessage> modifier)
+        public void AddModifier(Action<HttpResponseMessage, HttpRequestMessage> modifier)
         {
-            _modifiers.Add(modifier);
+            _responseModifiers.Add(modifier);
         }
 
         public bool IsMatch(HttpRequestMessage request)
@@ -34,11 +35,11 @@ namespace WonderTools.FakeHttpClient
             return true;
         }
 
-        public void BuildResponse(HttpResponseMessage response)
+        public void BuildResponse(HttpResponseMessage response, HttpRequestMessage request)
         {
-            foreach (var modifier in _modifiers)
+            foreach (var modifier in _responseModifiers)
             {
-                modifier.Invoke(response);
+                modifier.Invoke(response, request);
             }
         }
     }
