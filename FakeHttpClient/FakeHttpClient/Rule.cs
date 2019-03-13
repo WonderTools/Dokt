@@ -6,10 +6,11 @@ namespace WonderTools.FakeHttpClient
 {
     public class Rule
     {
-        Func<Exception> _exceptionFactory;
         List<Action<HttpResponseMessage, HttpRequestMessage>> 
             _responseModifiers = new List<Action<HttpResponseMessage, HttpRequestMessage>>();
         List<Predicate<HttpRequestMessage>> _entryConditions = new List<Predicate<HttpRequestMessage>>();
+        List<Action<HttpRequestMessage>> _callBacks = new List<Action<HttpRequestMessage>>();
+        private Func<HttpRequestMessage, Exception> _exceptionGenerator;
 
         public void AddEntryCondition(Predicate<HttpRequestMessage> entryCondition)
         {
@@ -19,6 +20,11 @@ namespace WonderTools.FakeHttpClient
         public void AddModifier(Action<HttpResponseMessage, HttpRequestMessage> modifier)
         {
             _responseModifiers.Add(modifier);
+        }
+
+        public void AddCallBack(Action<HttpRequestMessage> action)
+        {
+            _callBacks.Add(action);
         }
 
         public bool IsMatch(HttpRequestMessage request)
@@ -41,6 +47,19 @@ namespace WonderTools.FakeHttpClient
             {
                 modifier.Invoke(response, request);
             }
+        }
+
+        public void ExecuteCallBacks(HttpRequestMessage request)
+        {
+            foreach (var callBack in _callBacks)
+            {
+                callBack.Invoke(request);
+            }
+        }
+
+        public void ThrowExceptionIfNeeded(HttpRequestMessage request)
+        {
+            _exceptionGenerator?.Invoke(request);
         }
     }
 }
