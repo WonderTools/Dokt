@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace FakeHttpClient
+namespace WonderTools.FakeHttpClient
 {
     public class Rule
     {
@@ -24,8 +24,11 @@ namespace FakeHttpClient
         {
             foreach (var entryCondition in _entryConditions)
             {
-                var re = entryCondition.Invoke(request);
-                if (re == false) return false;
+                var result = entryCondition.Invoke(request);
+                if (result == false)
+                {
+                    return false;
+                }
             }
 
             return true;
