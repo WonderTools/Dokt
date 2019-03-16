@@ -23,8 +23,10 @@ namespace WonderTools.FakeHttpClient
             {
                 if (rule.IsMatch(request))
                 {
+                    rule.ExecuteCallBacks(request);
+                    rule.ThrowExceptionIfNeeded(request);
                     var response = new HttpResponseMessage();
-                    rule.BuildResponse(response);
+                    rule.BuildResponse(response, request);
                     return response;
                 }
             }

@@ -6,13 +6,13 @@ namespace WonderTools.FakeHttpClient
     {
         public static Rule UseAcceptRangeInResponse(this Rule rule, string range)
         {
-            rule.AddModifier(x => x.Headers.AcceptRanges.Add(range));
+            rule.AddModifier((response, request) => response.Headers.AcceptRanges.Add(range));
             return rule;
         }
 
         public static Rule UseTransferEncodingInResponse(this Rule rule, string encoding)
         {
-            rule.AddModifier(x => x.Headers.TransferEncoding.Add(new TransferCodingHeaderValue(encoding)));
+            rule.AddModifier((response, request) => response.Headers.TransferEncoding.Add(new TransferCodingHeaderValue(encoding)));
             return rule;
         }
     }
