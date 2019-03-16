@@ -6,7 +6,7 @@ namespace WonderTools.FakeHttpClient
     {
         public static Rule UseStatusCode(this Rule rule, HttpStatusCode statusCode)
         {
-            rule.AddModifier((response, request) => { response.StatusCode = statusCode; });
+            rule.AddModifier((request, response) => { response.StatusCode = statusCode; });
             return rule;
         }
     }

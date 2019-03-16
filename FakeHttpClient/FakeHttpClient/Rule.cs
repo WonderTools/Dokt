@@ -6,25 +6,34 @@ namespace WonderTools.FakeHttpClient
 {
     public class Rule
     {
-        List<Action<HttpResponseMessage, HttpRequestMessage>> 
-            _responseModifiers = new List<Action<HttpResponseMessage, HttpRequestMessage>>();
+        List<Action<HttpRequestMessage,HttpResponseMessage>> 
+            _responseModifiers = new List<Action< HttpRequestMessage, HttpResponseMessage>>();
         List<Predicate<HttpRequestMessage>> _entryConditions = new List<Predicate<HttpRequestMessage>>();
         List<Action<HttpRequestMessage>> _callBacks = new List<Action<HttpRequestMessage>>();
         private Func<HttpRequestMessage, Exception> _exceptionGenerator;
 
-        public void AddEntryCondition(Predicate<HttpRequestMessage> entryCondition)
+        public Rule AddEntryCondition(Predicate<HttpRequestMessage> entryCondition)
         {
             _entryConditions.Add(entryCondition);
+            return this;
         }
 
-        public void AddModifier(Action<HttpResponseMessage, HttpRequestMessage> modifier)
+        public Rule AddModifier(Action<HttpRequestMessage,HttpResponseMessage > modifier)
         {
             _responseModifiers.Add(modifier);
+            return this;
         }
 
-        public void AddCallBack(Action<HttpRequestMessage> action)
+        public Rule AddCallBack(Action<HttpRequestMessage> action)
         {
             _callBacks.Add(action);
+            return this;
+        }
+
+        public Rule AddExceptionFactory(Func<HttpRequestMessage, Exception> exceptionGenerator)
+        {
+            _exceptionGenerator = exceptionGenerator;
+            return this;
         }
 
         public bool IsMatch(HttpRequestMessage request)
@@ -41,11 +50,11 @@ namespace WonderTools.FakeHttpClient
             return true;
         }
 
-        public void BuildResponse(HttpResponseMessage response, HttpRequestMessage request)
+        public void BuildResponse(HttpRequestMessage request,HttpResponseMessage response)
         {
             foreach (var modifier in _responseModifiers)
             {
-                modifier.Invoke(response, request);
+                modifier.Invoke(request, response);
             }
         }
 
@@ -59,7 +68,11 @@ namespace WonderTools.FakeHttpClient
 
         public void ThrowExceptionIfNeeded(HttpRequestMessage request)
         {
-            _exceptionGenerator?.Invoke(request);
+            if (_exceptionGenerator != null)
+            {
+                var exception = _exceptionGenerator.Invoke(request);
+                throw exception;
+            }
         }
     }
 }
