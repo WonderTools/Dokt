@@ -26,7 +26,7 @@ namespace WonderTools.FakeHttpClient
                     rule.ExecuteCallBacks(request);
                     rule.ThrowExceptionIfNeeded(request);
                     var response = new HttpResponseMessage();
-                    rule.BuildResponse(response, request);
+                    rule.BuildResponse(request,response);
                     return response;
                 }
             }
