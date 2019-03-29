@@ -4,25 +4,25 @@ namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleUriExtensions
     {
-        public static IRequestMatchingRuleBuilder WhenUri(this IRequestMatchingRuleBuilder ruleBuilder, string uri)
+        public static IRequestMatchingRuleBuilder WithUri(this IRequestMatchingRuleBuilder ruleBuilder, string uri)
         {
             ruleBuilder.With(x => x.RequestUri.AbsoluteUri == uri);
             return ruleBuilder;
         }
 
-        public static IRequestMatchingRuleBuilder WhenUriStartsWith(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
+        public static IRequestMatchingRuleBuilder WithUriStartingWith(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
         {
             ruleBuilder.With(x => x.RequestUri.OriginalString.StartsWith(segment));
             return ruleBuilder;
         }
 
-        public static IRequestMatchingRuleBuilder WhenUriContains(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
+        public static IRequestMatchingRuleBuilder WithUriContaining(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
         {
             ruleBuilder.With(x => x.RequestUri.AbsoluteUri.Contains(segment));
             return ruleBuilder;
         }
 
-        public static IRequestMatchingRuleBuilder WhenUriPort(this IRequestMatchingRuleBuilder ruleBuilder, int port)
+        public static IRequestMatchingRuleBuilder WithUriPort(this IRequestMatchingRuleBuilder ruleBuilder, int port)
         {
             ruleBuilder.With(x => x.RequestUri.Port.Equals(port));
             return ruleBuilder;

@@ -4,23 +4,6 @@ using System.Net.Http;
 
 namespace WonderTools.FakeHttpClient
 {
-    public interface IRequestMatchingRuleBuilder : IRuleBuilder
-    {
-        RuleBuilder With(Predicate<HttpRequestMessage> entryCondition);
-    }
-
-    public interface IResponseMakingRuleBuilder : IRuleBuilder
-    {
-        RuleBuilder Use(Action<HttpRequestMessage, HttpResponseMessage> modifier);
-    }
-
-    public interface IRuleBuilder
-    {
-        IResponseMakingRuleBuilder Respond();
-        void Throw(Func<HttpRequestMessage, Exception> exceptionGenerator);
-        IRuleBuilder AddCallBack(Action<HttpRequestMessage> action);
-    }
-
     public class RuleBuilder : IRequestMatchingRuleBuilder, IResponseMakingRuleBuilder
     {
         List<Action<HttpRequestMessage, HttpResponseMessage>>

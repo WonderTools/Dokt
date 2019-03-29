@@ -25,7 +25,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
 
@@ -39,7 +39,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var transferEncoding = "trailer";
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetTransferEncodingInResponse(transferEncoding).UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetTransferEncodingInResponse(transferEncoding).UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
             
@@ -51,7 +51,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetServerInResponse("Kestrel").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetServerInResponse("Kestrel").UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
@@ -64,7 +64,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var proxyAuthenticate = "Basic";
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
@@ -77,7 +77,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var proxyAuthenticate = "Basic";
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).SetPragmaInResponse("Cache-Control","no-cache").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).SetPragmaInResponse("Cache-Control","no-cache").UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
