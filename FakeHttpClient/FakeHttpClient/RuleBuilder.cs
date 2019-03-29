@@ -19,7 +19,7 @@ namespace WonderTools.FakeHttpClient
             return this;
         }
 
-        public RuleBuilder Use(Action<HttpRequestMessage, HttpResponseMessage> modifier)
+        public RuleBuilder Using(Action<HttpRequestMessage, HttpResponseMessage> modifier)
         {
             _responseModifiers.Add(modifier);
             return this;

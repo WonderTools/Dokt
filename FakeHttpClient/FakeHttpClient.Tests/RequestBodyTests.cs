@@ -29,7 +29,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var content = "test";
             var withContentEncoding = content.CreateContent().WithContentEncoding("de");
             _messageHandler.WhenRequest().WithUri(_defaultUri).WithContent(withContentEncoding).
-                Respond().UseStatusCode(responseHttpCode);
+                Respond().UsingStatusCode(responseHttpCode);
 
             var response = _client.PostAsync(new Uri(_defaultUri),withContentEncoding).Result;
 

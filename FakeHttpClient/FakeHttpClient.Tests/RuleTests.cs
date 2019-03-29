@@ -28,7 +28,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var isCalled = false;
             Action<HttpRequestMessage> callBackAction = (x) => { isCalled = true; };
             _messageHandler.WhenRequest().WithUri(uri).AddCallBack(callBackAction).Respond()
-                .UseStatusCode(responseHttpCode);
+                .UsingStatusCode(responseHttpCode);
 
              _client.GetAsync(uri);
 

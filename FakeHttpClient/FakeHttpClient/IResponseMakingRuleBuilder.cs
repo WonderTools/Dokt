@@ -5,6 +5,6 @@ namespace WonderTools.FakeHttpClient
 {
     public interface IResponseMakingRuleBuilder : IRuleBuilder
     {
-        RuleBuilder Use(Action<HttpRequestMessage, HttpResponseMessage> modifier);
+        RuleBuilder Using(Action<HttpRequestMessage, HttpResponseMessage> modifier);
     }
 }

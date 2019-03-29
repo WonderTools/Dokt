@@ -4,9 +4,9 @@ namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleResponseBodyExtension
     {
-        public static IResponseMakingRuleBuilder SetResponseContent(this IResponseMakingRuleBuilder ruleBuilder,HttpContent content)
+        public static IResponseMakingRuleBuilder UsingContent(this IResponseMakingRuleBuilder ruleBuilder,HttpContent content)
         {
-            ruleBuilder.Use((request, response) =>
+            ruleBuilder.Using((request, response) =>
             {
                 response.Content = content;
             });
