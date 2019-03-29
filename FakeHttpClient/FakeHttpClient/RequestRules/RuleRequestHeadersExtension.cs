@@ -4,34 +4,34 @@ namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleRequestHeadersExtension
     {
-        public static Rule WithAcceptHeader(this Rule rule, string mediaType)
+        public static IRequestMatchingRuleBuilder WithAcceptHeader(this IRequestMatchingRuleBuilder ruleBuilder, string mediaType)
         {
-            rule.AddEntryCondition(x => x.Headers.Accept.Contains(new MediaTypeWithQualityHeaderValue(mediaType)));
-            return rule;
+            ruleBuilder.With(x => x.Headers.Accept.Contains(new MediaTypeWithQualityHeaderValue(mediaType)));
+            return ruleBuilder;
         }
 
-        public static Rule WithAcceptCharsetHeader(this Rule rule, string headerValue)
+        public static IRequestMatchingRuleBuilder WithAcceptCharsetHeader(this IRequestMatchingRuleBuilder ruleBuilder, string headerValue)
         {
-            rule.AddEntryCondition(x => x.Headers.AcceptCharset.Contains(new StringWithQualityHeaderValue(headerValue)));
-            return rule;
+            ruleBuilder.With(x => x.Headers.AcceptCharset.Contains(new StringWithQualityHeaderValue(headerValue)));
+            return ruleBuilder;
         }
 
-        public static Rule WithAcceptEncodingHeader(this Rule rule, string headerValue)
+        public static IRequestMatchingRuleBuilder WithAcceptEncodingHeader(this IRequestMatchingRuleBuilder ruleBuilder, string headerValue)
         {
-            rule.AddEntryCondition(x => x.Headers.AcceptEncoding.Contains(new StringWithQualityHeaderValue(headerValue)));
-            return rule;
+            ruleBuilder.With(x => x.Headers.AcceptEncoding.Contains(new StringWithQualityHeaderValue(headerValue)));
+            return ruleBuilder;
         }
 
-        public static Rule WithAcceptLanguageHeader(this Rule rule, string headerValue)
+        public static IRequestMatchingRuleBuilder WithAcceptLanguageHeader(this IRequestMatchingRuleBuilder ruleBuilder, string headerValue)
         {
-            rule.AddEntryCondition(x => x.Headers.AcceptLanguage.Contains(new StringWithQualityHeaderValue(headerValue)));
-            return rule;
+            ruleBuilder.With(x => x.Headers.AcceptLanguage.Contains(new StringWithQualityHeaderValue(headerValue)));
+            return ruleBuilder;
         }
 
-        public static Rule WithAuthenticationHeader(this Rule rule, string scheme,string parameter)
+        public static IRequestMatchingRuleBuilder WithAuthenticationHeader(this IRequestMatchingRuleBuilder ruleBuilder, string scheme,string parameter)
         {
-            rule.AddEntryCondition(x => x.Headers.Authorization.Equals(new AuthenticationHeaderValue(scheme,parameter)));
-            return rule;
+            ruleBuilder.With(x => x.Headers.Authorization.Equals(new AuthenticationHeaderValue(scheme,parameter)));
+            return ruleBuilder;
         }
     }
 }

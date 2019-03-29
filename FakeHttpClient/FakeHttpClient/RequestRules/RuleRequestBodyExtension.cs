@@ -4,10 +4,10 @@ namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleRequestBodyExtension
     {
-        public static Rule WithRequestContent(this Rule rule, HttpContent content)
+        public static IRequestMatchingRuleBuilder WithRequestContent(this IRequestMatchingRuleBuilder ruleBuilder, HttpContent content)
         {
-            rule.AddEntryCondition(x => x.Content.Equals(content));
-            return rule;
+            ruleBuilder.With(x => x.Content.Equals(content));
+            return ruleBuilder;
         }
     }
 }

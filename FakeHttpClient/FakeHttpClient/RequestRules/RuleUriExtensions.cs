@@ -4,52 +4,52 @@ namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleUriExtensions
     {
-        public static Rule WhenUri(this Rule rule, string uri)
+        public static IRequestMatchingRuleBuilder WhenUri(this IRequestMatchingRuleBuilder ruleBuilder, string uri)
         {
-            rule.AddEntryCondition(x => x.RequestUri.AbsoluteUri == uri);
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.AbsoluteUri == uri);
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriStartsWith(this Rule rule, string segment)
+        public static IRequestMatchingRuleBuilder WhenUriStartsWith(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
         {
-            rule.AddEntryCondition(x => x.RequestUri.OriginalString.StartsWith(segment));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.OriginalString.StartsWith(segment));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriContains(this Rule rule, string segment)
+        public static IRequestMatchingRuleBuilder WhenUriContains(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
         {
-            rule.AddEntryCondition(x => x.RequestUri.AbsoluteUri.Contains(segment));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.AbsoluteUri.Contains(segment));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriPort(this Rule rule, int port)
+        public static IRequestMatchingRuleBuilder WhenUriPort(this IRequestMatchingRuleBuilder ruleBuilder, int port)
         {
-            rule.AddEntryCondition(x => x.RequestUri.Port.Equals(port));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.Port.Equals(port));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriScheme(this Rule rule, string scheme)
+        public static IRequestMatchingRuleBuilder WhenUriScheme(this IRequestMatchingRuleBuilder ruleBuilder, string scheme)
         {
-            rule.AddEntryCondition(x => x.RequestUri.Scheme.Equals(scheme));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.Scheme.Equals(scheme));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriAuthority(this Rule rule, string authority)
+        public static IRequestMatchingRuleBuilder WhenUriAuthority(this IRequestMatchingRuleBuilder ruleBuilder, string authority)
         {
-            rule.AddEntryCondition(x => x.RequestUri.Authority.Equals(authority));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.Authority.Equals(authority));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriWithQuery(this Rule rule, string query)
+        public static IRequestMatchingRuleBuilder WhenUriWithQuery(this IRequestMatchingRuleBuilder ruleBuilder, string query)
         {
-            rule.AddEntryCondition(x => x.RequestUri.Query.Equals(query));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.Query.Equals(query));
+            return ruleBuilder;
         }
 
-        public static Rule WhenUriHasSegment(this Rule rule, string segment)
+        public static IRequestMatchingRuleBuilder WhenUriHasSegment(this IRequestMatchingRuleBuilder ruleBuilder, string segment)
         {
-            rule.AddEntryCondition(x => x.RequestUri.Segments.Contains(segment));
-            return rule;
+            ruleBuilder.With(x => x.RequestUri.Segments.Contains(segment));
+            return ruleBuilder;
         }
     }
 }

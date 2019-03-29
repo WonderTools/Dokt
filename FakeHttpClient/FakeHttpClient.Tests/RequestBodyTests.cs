@@ -28,7 +28,8 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
             var withContentEncoding = content.CreateContent().WithContentEncoding("de");
-            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithRequestContent(withContentEncoding).UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithRequestContent(withContentEncoding).
+                Respond().UseStatusCode(responseHttpCode);
 
             var response = _client.PostAsync(new Uri(_defaultUri),withContentEncoding).Result;
 

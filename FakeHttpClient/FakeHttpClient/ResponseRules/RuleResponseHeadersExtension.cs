@@ -4,34 +4,34 @@ namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleResponseHeadersExtension
     {
-        public static Rule SetAcceptRangeInResponse(this Rule rule, string range)
+        public static IResponseMakingRuleBuilder SetAcceptRangeInResponse(this IResponseMakingRuleBuilder ruleBuilder, string range)
         {
-            rule.AddModifier((request, response) => response.Headers.AcceptRanges.Add(range));
-            return rule;
+            ruleBuilder.Use((request, response) => response.Headers.AcceptRanges.Add(range));
+            return ruleBuilder;
         }
 
-        public static Rule SetTransferEncodingInResponse(this Rule rule, string encoding)
+        public static IResponseMakingRuleBuilder SetTransferEncodingInResponse(this IResponseMakingRuleBuilder ruleBuilder, string encoding)
         {
-            rule.AddModifier((request, response) => response.Headers.TransferEncoding.Add(new TransferCodingHeaderValue(encoding)));
-            return rule;
+            ruleBuilder.Use((request, response) => response.Headers.TransferEncoding.Add(new TransferCodingHeaderValue(encoding)));
+            return ruleBuilder;
         }
 
-        public static Rule SetServerInResponse(this Rule rule, string productName)
+        public static IResponseMakingRuleBuilder SetServerInResponse(this IResponseMakingRuleBuilder ruleBuilder, string productName)
         {
-            rule.AddModifier((request, response) => response.Headers.Server.Add(new ProductInfoHeaderValue(new ProductHeaderValue(productName))));
-            return rule;
+            ruleBuilder.Use((request, response) => response.Headers.Server.Add(new ProductInfoHeaderValue(new ProductHeaderValue(productName))));
+            return ruleBuilder;
         }
 
-        public static Rule SetProxyAuthenticateInResponse(this Rule rule, string scheme)
+        public static IResponseMakingRuleBuilder SetProxyAuthenticateInResponse(this IResponseMakingRuleBuilder ruleBuilder, string scheme)
         {
-            rule.AddModifier((request, response) => response.Headers.ProxyAuthenticate.Add(new AuthenticationHeaderValue(scheme)));
-            return rule;
+            ruleBuilder.Use((request, response) => response.Headers.ProxyAuthenticate.Add(new AuthenticationHeaderValue(scheme)));
+            return ruleBuilder;
         }
 
-        public static Rule SetPragmaInResponse(this Rule rule, string name,string value)
+        public static IResponseMakingRuleBuilder SetPragmaInResponse(this IResponseMakingRuleBuilder ruleBuilder, string name,string value)
         {
-            rule.AddModifier((request, response) => response.Headers.Pragma.Add(new NameValueHeaderValue(name,value)));
-            return rule;
+            ruleBuilder.Use((request, response) => response.Headers.Pragma.Add(new NameValueHeaderValue(name,value)));
+            return ruleBuilder;
         }
     }
 }

@@ -8,11 +8,11 @@ namespace WonderTools.FakeHttpClient
 {
     public class MockableHttpMessageHandler : HttpMessageHandler
     {
-        private readonly List<Rule> _rules = new List<Rule>();
+        private readonly List<RuleBuilder> _rules = new List<RuleBuilder>();
 
-        public Rule WhenRequest()
+        public IRequestMatchingRuleBuilder WhenRequest()
         {
-            var rule = new Rule();
+            var rule = new RuleBuilder();
             _rules.Add(rule);
             return rule;
         }

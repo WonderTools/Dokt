@@ -4,13 +4,13 @@ namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleResponseBodyExtension
     {
-        public static Rule SetResponseContent(this Rule rule,HttpContent content)
+        public static IResponseMakingRuleBuilder SetResponseContent(this IResponseMakingRuleBuilder ruleBuilder,HttpContent content)
         {
-            rule.AddModifier((request, response) =>
+            ruleBuilder.Use((request, response) =>
             {
                 response.Content = content;
             });
-            return rule;
+            return ruleBuilder;
         }
     }
 }
