@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using WonderTools.FakeHttpClient.RequestRules;
 using WonderTools.FakeHttpClient.ResponseRules;
@@ -35,7 +36,7 @@ namespace WonderTools.FakeHttpClient.Tests
         }
 
         [Test]
-        public void When_exception_is_set_to_throw_then_throw_the_exception()
+        public async Task When_exception_is_set_to_throw_then_throw_the_exception()
         {
             var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
@@ -45,11 +46,11 @@ namespace WonderTools.FakeHttpClient.Tests
                 .UseStatusCode(responseHttpCode);
             try
             {
-                _client.GetAsync(uri);
+                await _client.GetAsync(uri);
             }
             catch (Exception e)
             {
-                Assert.AreEqual(exception.GetType(),e.InnerException.GetType());
+                Assert.AreEqual(exception.GetType(),e.GetType());
             }
         }
     }
