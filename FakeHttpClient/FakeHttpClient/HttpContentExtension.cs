@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace WonderTools.FakeHttpClient
@@ -20,6 +21,18 @@ namespace WonderTools.FakeHttpClient
         public static HttpContent WithContentRange(this HttpContent content, long from,long to)
         {
             content.Headers.ContentRange = new ContentRangeHeaderValue(from,to);
+            return content;
+        }
+
+        public static HttpContent WithContentEncoding(this HttpContent content, string encoding)
+        {
+            content.Headers.ContentEncoding.Add(encoding);
+            return content;
+        }
+
+        public static HttpContent WithContentLanguage(this HttpContent content, string language)
+        {
+            content.Headers.ContentLanguage.Add(language);
             return content;
         }
     }

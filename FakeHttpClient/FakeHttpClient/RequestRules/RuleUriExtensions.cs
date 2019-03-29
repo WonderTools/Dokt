@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleUriExtensions
     {

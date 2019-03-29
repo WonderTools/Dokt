@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.FakeHttpClient.RequestRules
 {
     public static class RuleRequestHeadersExtension
     {

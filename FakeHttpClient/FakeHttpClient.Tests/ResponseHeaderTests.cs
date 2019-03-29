@@ -2,7 +2,8 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using WonderTools.FakeHttpClient.RequestRules;
+using WonderTools.FakeHttpClient.ResponseRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
@@ -10,6 +11,7 @@ namespace WonderTools.FakeHttpClient.Tests
     {
         MockableHttpMessageHandler _messageHandler;
         HttpClient _client;
+        private string _defaultUri= @"https://www.google.com/";
 
         [SetUp]
         public void SetUp()
@@ -21,10 +23,9 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_range_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
-            _messageHandler.BuildRule().WhenUri(uri).UseAcceptRangeInResponse(responseRange).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetAcceptRangeInResponse(responseRange).UseStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
 
@@ -35,13 +36,12 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_transfer_encoding_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var transferEncoding = "trailer";
-            _messageHandler.BuildRule().WhenUri(uri).UseAcceptRangeInResponse(responseRange).UseTransferEncodingInResponse(transferEncoding).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetAcceptRangeInResponse(responseRange).SetTransferEncodingInResponse(transferEncoding).UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
             
             Assert.AreEqual(transferEncoding, response.Headers.TransferEncoding.ToString());
         }
@@ -49,12 +49,11 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_server_in_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
-            _messageHandler.BuildRule().WhenUri(uri).UseAcceptRangeInResponse(responseRange).UseServerInResponse("Kestrel").UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetAcceptRangeInResponse(responseRange).SetServerInResponse("Kestrel").UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
             Assert.AreEqual("Kestrel", response.Headers.Server.ToString());
         }
@@ -62,13 +61,12 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_proxy_authenticate_in_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var proxyAuthenticate = "Basic";
-            _messageHandler.BuildRule().WhenUri(uri).UseAcceptRangeInResponse(responseRange).UseProxyAuthenticateInResponse(proxyAuthenticate).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
             Assert.AreEqual(proxyAuthenticate, response.Headers.ProxyAuthenticate.ToString());
         }
@@ -76,13 +74,12 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_pragma_in_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var proxyAuthenticate = "Basic";
-            _messageHandler.BuildRule().WhenUri(uri).UseAcceptRangeInResponse(responseRange).UseProxyAuthenticateInResponse(proxyAuthenticate).UsePragmaInResponse("Cache-Control","no-cache").UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetAcceptRangeInResponse(responseRange).SetProxyAuthenticateInResponse(proxyAuthenticate).SetPragmaInResponse("Cache-Control","no-cache").UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
             Assert.AreEqual("Cache-Control=no-cache", response.Headers.Pragma.ToString());
         }

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleResponseBodyExtension
     {
-        public static Rule UseResponseContent(this Rule rule,HttpContent content)
+        public static Rule SetResponseContent(this Rule rule,HttpContent content)
         {
             rule.AddModifier((request, response) =>
             {

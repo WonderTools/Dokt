@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleStatusCodeExtensions
     {

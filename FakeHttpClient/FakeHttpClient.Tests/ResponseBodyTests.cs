@@ -2,6 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
+using WonderTools.FakeHttpClient.RequestRules;
+using WonderTools.FakeHttpClient.ResponseRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
@@ -9,6 +11,7 @@ namespace WonderTools.FakeHttpClient.Tests
     {
         MockableHttpMessageHandler _messageHandler;
         HttpClient _client;
+        string _defaultUri = @"https://www.google.com/";
 
         [SetUp]
         public void SetUp()
@@ -20,12 +23,11 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_content_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
-            _messageHandler.BuildRule().WhenUri(uri).UseResponseContent(content.CreateContent()).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetResponseContent(content.CreateContent()).UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
             var result = response.Content.ReadAsStringAsync().Result;
 
              Assert.AreEqual(content, result);
@@ -34,13 +36,13 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_content_type_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
             var contentType = "text/html";
-            _messageHandler.BuildRule().WhenUri(uri).UseResponseContent(content.CreateContent().WithContentType(contentType)).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetResponseContent(content.CreateContent().WithContentType
+                (contentType)).UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
             Assert.AreEqual(contentType, response.Content.Headers.ContentType.ToString());
         }
@@ -48,14 +50,40 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_request_then_use_content_range_response()
         {
-            var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
-            _messageHandler.BuildRule().WhenUri(uri).UseResponseContent(content.CreateContent().WithContentRange(22234, 62887922)).UseStatusCode(responseHttpCode);
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetResponseContent(content.CreateContent().WithContentRange(22234, 62887922)).UseStatusCode(responseHttpCode);
 
-            var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
             Assert.AreEqual("bytes 22234-62887922/*", response.Content.Headers.ContentRange.ToString());
+        }
+
+        [Test]
+        public void When_request_then_use_content_encoding_response()
+        {
+            var responseHttpCode = HttpStatusCode.Accepted;
+            var content = "test";
+            var contentEncoding = "gzip";
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetResponseContent(content.CreateContent().WithContentRange(22234, 62887922).WithContentEncoding(contentEncoding)).UseStatusCode(responseHttpCode);
+
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
+
+            Assert.AreEqual(contentEncoding, response.Content.Headers.ContentEncoding.ToString());
+        }
+
+        [Test]
+        public void When_request_then_use_content_language_response()
+        {
+            var responseHttpCode = HttpStatusCode.Accepted;
+            var content = "test";
+            var contentEncoding = "gzip";
+            var contentLanguage = "de";
+            _messageHandler.BuildRule().WhenUri(_defaultUri).SetResponseContent(content.CreateContent().WithContentRange(22234, 62887922).WithContentEncoding(contentEncoding).WithContentLanguage(contentLanguage)).UseStatusCode(responseHttpCode);
+
+            var response = _client.GetAsync(new Uri(_defaultUri)).Result;
+
+            Assert.AreEqual(contentLanguage, response.Content.Headers.ContentLanguage.ToString());
         }
     }
 }

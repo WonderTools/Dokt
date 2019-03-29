@@ -1,34 +1,34 @@
 ﻿using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.FakeHttpClient.ResponseRules
 {
     public static class RuleResponseHeadersExtension
     {
-        public static Rule UseAcceptRangeInResponse(this Rule rule, string range)
+        public static Rule SetAcceptRangeInResponse(this Rule rule, string range)
         {
             rule.AddModifier((request, response) => response.Headers.AcceptRanges.Add(range));
             return rule;
         }
 
-        public static Rule UseTransferEncodingInResponse(this Rule rule, string encoding)
+        public static Rule SetTransferEncodingInResponse(this Rule rule, string encoding)
         {
             rule.AddModifier((request, response) => response.Headers.TransferEncoding.Add(new TransferCodingHeaderValue(encoding)));
             return rule;
         }
 
-        public static Rule UseServerInResponse(this Rule rule, string productName)
+        public static Rule SetServerInResponse(this Rule rule, string productName)
         {
             rule.AddModifier((request, response) => response.Headers.Server.Add(new ProductInfoHeaderValue(new ProductHeaderValue(productName))));
             return rule;
         }
 
-        public static Rule UseProxyAuthenticateInResponse(this Rule rule, string scheme)
+        public static Rule SetProxyAuthenticateInResponse(this Rule rule, string scheme)
         {
             rule.AddModifier((request, response) => response.Headers.ProxyAuthenticate.Add(new AuthenticationHeaderValue(scheme)));
             return rule;
         }
 
-        public static Rule UsePragmaInResponse(this Rule rule, string name,string value)
+        public static Rule SetPragmaInResponse(this Rule rule, string name,string value)
         {
             rule.AddModifier((request, response) => response.Headers.Pragma.Add(new NameValueHeaderValue(name,value)));
             return rule;
