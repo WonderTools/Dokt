@@ -27,7 +27,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var isCalled = false;
             Action<HttpRequestMessage> callBackAction = (x) => { isCalled = true; };
-            _messageHandler.BuildRule().WhenUri(uri).AddCallBack(callBackAction)
+            _messageHandler.WhenRequest().WhenUri(uri).AddCallBack(callBackAction)
                 .UseStatusCode(responseHttpCode);
 
              _client.GetAsync(uri);
@@ -42,8 +42,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var exception = new ArgumentException();
 
-            _messageHandler.BuildRule().WhenUri(uri).AddExceptionFactory((r)=> exception)
-                .UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(uri).Throw((r) => exception);
             try
             {
                 await _client.GetAsync(uri);

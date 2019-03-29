@@ -10,7 +10,7 @@ namespace WonderTools.FakeHttpClient
     {
         private readonly List<Rule> _rules = new List<Rule>();
 
-        public Rule BuildRule()
+        public Rule WhenRequest()
         {
             var rule = new Rule();
             _rules.Add(rule);

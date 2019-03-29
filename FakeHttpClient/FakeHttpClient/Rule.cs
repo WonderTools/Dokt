@@ -4,6 +4,12 @@ using System.Net.Http;
 
 namespace WonderTools.FakeHttpClient
 {
+    public interface IRequestMatchingRuleBuilder
+    {
+
+    }
+
+
     public class Rule
     {
         List<Action<HttpRequestMessage,HttpResponseMessage>> 
@@ -30,10 +36,9 @@ namespace WonderTools.FakeHttpClient
             return this;
         }
 
-        public Rule AddExceptionFactory(Func<HttpRequestMessage, Exception> exceptionGenerator)
+        public void Throw(Func<HttpRequestMessage, Exception> exceptionGenerator)
         {
             _exceptionGenerator = exceptionGenerator;
-            return this;
         }
 
         public bool IsMatch(HttpRequestMessage request)

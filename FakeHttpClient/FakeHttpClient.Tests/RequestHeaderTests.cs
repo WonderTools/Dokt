@@ -26,7 +26,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var acceptHeader = new MediaTypeWithQualityHeaderValue("application/json");
-            _messageHandler.BuildRule().WhenUri(_defaultUri).WithAcceptHeader("application/json").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithAcceptHeader("application/json").UseStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.Accept.Add(acceptHeader);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
@@ -39,7 +39,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var charsetHeader = new StringWithQualityHeaderValue("iso-8859-5");
-            _messageHandler.BuildRule().WhenUri(_defaultUri).WithAcceptCharsetHeader("iso-8859-5").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithAcceptCharsetHeader("iso-8859-5").UseStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.AcceptCharset.Add(charsetHeader);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
@@ -53,7 +53,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var encodingHeader = new StringWithQualityHeaderValue("gzip");
-            _messageHandler.BuildRule().WhenUri(_defaultUri).WithAcceptEncodingHeader("gzip").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithAcceptEncodingHeader("gzip").UseStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.AcceptEncoding.Add(encodingHeader);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
@@ -66,7 +66,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var languageHeader = new StringWithQualityHeaderValue("en-US");
-            _messageHandler.BuildRule().WhenUri(_defaultUri).WithAcceptLanguageHeader("en-US").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithAcceptLanguageHeader("en-US").UseStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.AcceptLanguage.Add(languageHeader);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
@@ -79,7 +79,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var authenticationHeader = new AuthenticationHeaderValue("http","test");
-            _messageHandler.BuildRule().WhenUri(_defaultUri).WithAuthenticationHeader("http", "test").UseStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WhenUri(_defaultUri).WithAuthenticationHeader("http", "test").UseStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.Authorization = authenticationHeader;
 
             var response = _client.DeleteAsync(new Uri(_defaultUri)).Result;

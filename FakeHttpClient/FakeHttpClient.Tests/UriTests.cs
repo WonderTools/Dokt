@@ -25,7 +25,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var uri = @"https://www.google.com/";
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUri(uri)
+            _messageHandler.WhenRequest().WhenUri(uri)
                 .UseStatusCode(responseHttpCode);
             
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = new Uri("https://www.google.com") })
@@ -40,7 +40,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var uriStarting = "https://www.go";
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriStartsWith(uriStarting)
+            _messageHandler.WhenRequest().WhenUriStartsWith(uriStarting)
                 .UseStatusCode(HttpStatusCode.Accepted);
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = new Uri(uriStarting + "anything") }).Result;
 
@@ -50,7 +50,7 @@ namespace WonderTools.FakeHttpClient.Tests
         [Test]
         public void When_uri_contains_with_then_status_code()
         {
-            _messageHandler.BuildRule().WhenUriContains("test")
+            _messageHandler.WhenRequest().WhenUriContains("test")
                 .UseStatusCode(HttpStatusCode.Accepted);
 
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = new Uri("https://www.test.com") }).Result;
@@ -65,7 +65,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var requestUri = new Uri("https://ip:80//www.test.com");
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriPort(80)
+            _messageHandler.WhenRequest().WhenUriPort(80)
                 .UseStatusCode(HttpStatusCode.Accepted);
             
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
@@ -81,7 +81,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var requestUri = new Uri("https://ip:80//www.test.com");
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriScheme("https")
+            _messageHandler.WhenRequest().WhenUriScheme("https")
                 .UseStatusCode(HttpStatusCode.Accepted);
 
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
@@ -96,7 +96,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriAuthority("ip:80")
+            _messageHandler.WhenRequest().WhenUriAuthority("ip:80")
                 .UseStatusCode(HttpStatusCode.Accepted);
 
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
@@ -111,7 +111,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriWithQuery("?q=abc")
+            _messageHandler.WhenRequest().WhenUriWithQuery("?q=abc")
                 .UseStatusCode(HttpStatusCode.Accepted);
 
             var response = _client.SendAsync(new HttpRequestMessage() { RequestUri = requestUri })
@@ -126,7 +126,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var requestUri = new Uri("https://ip:80//www.test.com/search?q=abc");
             var responseHttpCode = HttpStatusCode.Accepted;
 
-            _messageHandler.BuildRule().WhenUriHasSegment("search")
+            _messageHandler.WhenRequest().WhenUriHasSegment("search")
                 .UseStatusCode(HttpStatusCode.Accepted);
 
             var response = _client.GetAsync(requestUri)
