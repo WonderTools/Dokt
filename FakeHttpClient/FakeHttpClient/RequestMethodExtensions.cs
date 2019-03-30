@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
-using WonderTools.Dokt;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
     public static class RequestMethodExtensions
     {

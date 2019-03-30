@@ -2,9 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
-using WonderTools.Dokt;
 
-namespace WonderTools.Flug.Tests
+namespace WonderTools.Dokt.Tests
 {
     public class RequestBodyTests
     {

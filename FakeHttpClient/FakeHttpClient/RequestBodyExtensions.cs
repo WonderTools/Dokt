@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
     public static class RequestBodyExtensions
     {

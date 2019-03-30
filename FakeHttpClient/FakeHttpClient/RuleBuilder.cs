@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
     public class RuleBuilder : IRequestMatchingRuleBuilder, IResponseMakingRuleBuilder
     {

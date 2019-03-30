@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
     public static class RequestUriExtensions
     {

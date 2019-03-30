@@ -1,11 +1,9 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Http;
-using WonderTools.Dokt;
-using WonderTools.Flug;
+using NUnit.Framework;
 
-namespace WonderTools.FakeHttpClient.Tests
+namespace WonderTools.Dokt.Tests
 {
     public class ResponseHeaderTests
     {

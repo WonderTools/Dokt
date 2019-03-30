@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
     public static class RequestContentHeaderExtensions
     {

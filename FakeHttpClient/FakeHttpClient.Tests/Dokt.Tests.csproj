@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>WonderTools.Flug.Tests</RootNamespace>
+    <RootNamespace>WonderTools.Dokt.Tests</RootNamespace>
 
-    <AssemblyName>WonderTools.Flug.Tests</AssemblyName>
+    <AssemblyName>WonderTools.Dokt.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
