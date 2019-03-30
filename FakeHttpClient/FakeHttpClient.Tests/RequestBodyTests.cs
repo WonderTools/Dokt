@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using NUnit.Framework;
-using WonderTools.Flug;
 
-namespace WonderTools.FakeHttpClient.Tests
+namespace WonderTools.Flug.Tests
 {
     public class RequestBodyTests
     {
