@@ -12,28 +12,30 @@ namespace WonderTools.FakeHttpClient
             return httpContent;
         }
 
-        public static HttpContent WithContentType(this HttpContent content, string mediaType)
+        public static IResponseMakingRuleBuilder UsingContentType(this IResponseMakingRuleBuilder ruleBuilder, string mediaType)
         {
-            content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-            return content;
+            ruleBuilder.Using((req, res) => { res.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType); });
+            return ruleBuilder;
         }
 
-        public static HttpContent WithContentRange(this HttpContent content, long from,long to)
+        public static IResponseMakingRuleBuilder UsingContentRange(this IResponseMakingRuleBuilder ruleBuilder, long from,long to)
         {
-            content.Headers.ContentRange = new ContentRangeHeaderValue(from,to);
-            return content;
+            ruleBuilder.Using((req, res) => { res.Content.Headers.ContentRange = new ContentRangeHeaderValue(from, to); });
+            return ruleBuilder;
         }
 
-        public static HttpContent WithContentEncoding(this HttpContent content, string encoding)
+        public static IResponseMakingRuleBuilder UsingContentEncoding(this IResponseMakingRuleBuilder ruleBuilder, string encoding)
         {
-            content.Headers.ContentEncoding.Add(encoding);
-            return content;
+            ruleBuilder.Using((req, res) => { res.Content.Headers.ContentEncoding.Add(encoding);});
+            return ruleBuilder;
         }
 
-        public static HttpContent WithContentLanguage(this HttpContent content, string language)
+        public static IResponseMakingRuleBuilder UsingContentLanguage(this IResponseMakingRuleBuilder ruleBuilder, string language)
         {
-            content.Headers.ContentLanguage.Add(language);
-            return content;
+
+            ruleBuilder.Using((req, res) => { res.Content.Headers.ContentLanguage.Add(language); });
+            return ruleBuilder;
+            
         }
     }
 }

@@ -26,7 +26,9 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var acceptHeader = new MediaTypeWithQualityHeaderValue("application/json");
-            _messageHandler.WhenRequest().WithUri(_defaultUri).WithAcceptHeader("application/json").Respond().UsingStatusCode(responseHttpCode);
+            _messageHandler
+                .WhenRequest()
+                    .WithUri(_defaultUri).WithAcceptHeader("application/json").Respond().UsingStatusCode(responseHttpCode);
             _client.DefaultRequestHeaders.Accept.Add(acceptHeader);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;

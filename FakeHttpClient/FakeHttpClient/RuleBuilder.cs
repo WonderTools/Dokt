@@ -30,7 +30,7 @@ namespace WonderTools.FakeHttpClient
             return this;
         }
 
-        public IRuleBuilder AddCallBack(Action<HttpRequestMessage> action)
+        public IRuleBuilder Execute(Action<HttpRequestMessage> action)
         {
             _callBacks.Add(action);
             return this;

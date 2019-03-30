@@ -7,6 +7,6 @@ namespace WonderTools.FakeHttpClient
     {
         IResponseMakingRuleBuilder Respond();
         void Throw(Func<HttpRequestMessage, Exception> exceptionGenerator);
-        IRuleBuilder AddCallBack(Action<HttpRequestMessage> action);
+        IRuleBuilder Execute(Action<HttpRequestMessage> action);
     }
 }
