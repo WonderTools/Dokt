@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
 
 namespace WonderTools.FakeHttpClient
 {
@@ -6,8 +8,12 @@ namespace WonderTools.FakeHttpClient
     {
         public static IRequestMatchingRuleBuilder WithContent(this IRequestMatchingRuleBuilder ruleBuilder, HttpContent content)
         {
-            ruleBuilder.With(x => x.Content.Equals(content));
-            return ruleBuilder;
+            return ruleBuilder.With(x => x.Content.Equals(content));
+        }
+
+        public static IRequestMatchingRuleBuilder WithContent(this IRequestMatchingRuleBuilder ruleBuilder, Func<HttpContent, bool> contentPredicate)
+        {
+            return ruleBuilder.With(x => contentPredicate(x.Content));
         }
     }
 }

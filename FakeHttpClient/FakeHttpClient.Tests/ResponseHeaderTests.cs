@@ -2,7 +2,6 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using WonderTools.FakeHttpClient.RequestRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
@@ -76,7 +75,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var responseRange = "byte";
             var proxyAuthenticate = "Basic";
-            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingAcceptRangeHeader(responseRange).UsingProxyAuthenticateHeader(proxyAuthenticate).SetPragmaInResponse("Cache-Control","no-cache").UsingStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingAcceptRangeHeader(responseRange).UsingProxyAuthenticateHeader(proxyAuthenticate).UsingPragmaHeader("Cache-Control","no-cache").UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 

@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using NUnit.Framework;
-using WonderTools.FakeHttpClient.RequestRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {

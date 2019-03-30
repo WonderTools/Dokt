@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using WonderTools.FakeHttpClient.RequestRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {

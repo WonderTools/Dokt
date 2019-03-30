@@ -28,7 +28,7 @@ namespace WonderTools.FakeHttpClient
             return ruleBuilder;
         }
 
-        public static IResponseMakingRuleBuilder SetPragmaInResponse(this IResponseMakingRuleBuilder ruleBuilder, string name,string value)
+        public static IResponseMakingRuleBuilder UsingPragmaHeader(this IResponseMakingRuleBuilder ruleBuilder, string name,string value)
         {
             ruleBuilder.Using((request, response) => response.Headers.Pragma.Add(new NameValueHeaderValue(name,value)));
             return ruleBuilder;

@@ -1,6 +1,7 @@
-﻿using System.Net.Http.Headers;
+﻿using System;
+using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient.RequestRules
+namespace WonderTools.FakeHttpClient
 {
     public static class RequestHeaderExtensions
     {
@@ -31,6 +32,12 @@ namespace WonderTools.FakeHttpClient.RequestRules
         public static IRequestMatchingRuleBuilder WithAuthenticationHeader(this IRequestMatchingRuleBuilder ruleBuilder, string scheme,string parameter)
         {
             ruleBuilder.With(x => x.Headers.Authorization.Equals(new AuthenticationHeaderValue(scheme,parameter)));
+            return ruleBuilder;
+        }
+
+        public static IRequestMatchingRuleBuilder WithHeader(this IRequestMatchingRuleBuilder ruleBuilder, Func<HttpRequestHeaders, bool> predicate)
+        {
+            ruleBuilder.With(x => predicate(x.Headers));
             return ruleBuilder;
         }
     }

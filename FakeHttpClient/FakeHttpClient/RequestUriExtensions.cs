@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace WonderTools.FakeHttpClient.RequestRules
+namespace WonderTools.FakeHttpClient
 {
     public static class RequestUriExtensions
     {

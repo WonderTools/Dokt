@@ -25,11 +25,12 @@ namespace WonderTools.FakeHttpClient
             return this;
         }
 
-        public IResponseMakingRuleBuilder Respond()
+        public IResponseMakingRuleBuilder Respond(string body = "")
         {
+            _responseModifiers.Add((req, res) => { res.Content = new StringContent(body);});
             return this;
         }
-
+        
         public IRuleBuilder Execute(Action<HttpRequestMessage> action)
         {
             _callBacks.Add(action);

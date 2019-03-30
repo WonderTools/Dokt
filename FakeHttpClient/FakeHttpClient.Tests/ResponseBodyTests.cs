@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
-using WonderTools.FakeHttpClient.RequestRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
@@ -24,7 +23,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
-            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContent(new StringContent(content)).UsingStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond(content).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
             var result = response.Content.ReadAsStringAsync().Result;
@@ -39,7 +38,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var content = "test";
             var contentType = "text/html";
             _messageHandler.WhenRequest().WithUri(_defaultUri).Respond()
-                .UsingContent(new StringContent(content)).UsingContentType(contentType).UsingStatusCode(responseHttpCode);
+                .UsingContentTypeHeader(contentType).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
             Assert.AreEqual(contentType, response.Content.Headers.ContentType.ToString());
@@ -51,7 +50,7 @@ namespace WonderTools.FakeHttpClient.Tests
         {
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
-            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContent(content).UsingContentRange(22234, 62887922).UsingStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContentRangeHeader(22234, 62887922).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
@@ -64,7 +63,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
             var contentEncoding = "gzip";
-            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContent(content).UsingContentRange(22234, 62887922).UsingContentEncoding(contentEncoding).UsingStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContentRangeHeader(22234, 62887922).UsingContentEncodingHeader(contentEncoding).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
@@ -78,7 +77,7 @@ namespace WonderTools.FakeHttpClient.Tests
             var content = "test";
             var contentEncoding = "gzip";
             var contentLanguage = "de";
-            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContent(content).UsingContentRange(22234, 62887922).UsingContentEncoding(contentEncoding).UsingContentLanguage(contentLanguage).UsingStatusCode(responseHttpCode);
+            _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingContentRangeHeader(22234, 62887922).UsingContentEncodingHeader(contentEncoding).UsingContentLanguageHeader(contentLanguage).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 
