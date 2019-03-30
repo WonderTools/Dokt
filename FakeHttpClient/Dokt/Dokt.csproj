@@ -4,6 +4,16 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>WonderTools.Dokt</RootNamespace>
     <AssemblyName>WonderTools.Dokt</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.9.0</Version>
+    <RepositoryUrl>https://github.com/WonderTools/Dokt</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageProjectUrl>https://github.com/WonderTools/Dokt</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/WonderTools/Dokt/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2019 Wonder Tools</Copyright>
+    <PackageTags>unit-testing, mock, httpclient, web, integration-test</PackageTags>
+    <Description>Provides a mechanism to unit test requests made with HttpClient</Description>
   </PropertyGroup>
 
 </Project>
