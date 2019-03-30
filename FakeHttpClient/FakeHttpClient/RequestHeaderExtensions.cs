@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public static class RequestHeaderExtensions
     {

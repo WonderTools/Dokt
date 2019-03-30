@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using WonderTools.Flug;
 
 namespace WonderTools.FakeHttpClient.Tests
 {

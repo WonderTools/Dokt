@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public static class RequestBodyExtensions
     {

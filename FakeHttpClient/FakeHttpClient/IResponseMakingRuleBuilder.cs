@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public interface IResponseMakingRuleBuilder : IRuleBuilder
     {

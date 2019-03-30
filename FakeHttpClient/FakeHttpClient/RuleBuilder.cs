@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public class RuleBuilder : IRequestMatchingRuleBuilder, IResponseMakingRuleBuilder
     {

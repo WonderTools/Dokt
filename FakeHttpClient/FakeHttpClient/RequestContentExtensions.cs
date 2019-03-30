@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public static class RequestContentExtensions
     {

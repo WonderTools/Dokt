@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public static class ResponseContentHeaderExtensions
     {

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FakeHttpClient\FakeHttpClient.csproj" />
+    <ProjectReference Include="..\FakeHttpClient\Flug.csproj" />
   </ItemGroup>
 
 </Project>

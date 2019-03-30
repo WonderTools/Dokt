@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public static class RequestMethodExtensions
     {

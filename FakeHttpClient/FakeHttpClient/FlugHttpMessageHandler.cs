@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WonderTools.FakeHttpClient
+namespace WonderTools.Flug
 {
     public class FlugHttpMessageHandler : HttpMessageHandler
     {
