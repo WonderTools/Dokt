@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>WonderTools.Flug</RootNamespace>
-    <AssemblyName>WonderTools.Flug</AssemblyName>
+    <RootNamespace>WonderTools.Dokt</RootNamespace>
+    <AssemblyName>WonderTools.Dokt</AssemblyName>
   </PropertyGroup>
 
 </Project>

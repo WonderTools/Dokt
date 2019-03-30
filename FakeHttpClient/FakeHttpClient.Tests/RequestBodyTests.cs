@@ -2,19 +2,20 @@
 using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
+using WonderTools.Dokt;
 
 namespace WonderTools.Flug.Tests
 {
     public class RequestBodyTests
     {
-        FlugHttpMessageHandler _messageHandler;
+        DoktHttpMessageHandler _messageHandler;
         HttpClient _client;
         private string _defaultUri = @"https://www.google.com/";
 
         [SetUp]
         public void SetUp()
         {
-            _messageHandler = new FlugHttpMessageHandler();
+            _messageHandler = new DoktHttpMessageHandler();
             _client = new HttpClient(_messageHandler);
         }
 

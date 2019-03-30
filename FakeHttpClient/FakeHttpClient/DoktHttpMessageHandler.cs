@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using WonderTools.Flug;
 
-namespace WonderTools.Flug
+namespace WonderTools.Dokt
 {
-    public class FlugHttpMessageHandler : HttpMessageHandler
+    public class DoktHttpMessageHandler : HttpMessageHandler
     {
         private readonly List<RuleBuilder> _rules = new List<RuleBuilder>();
 

@@ -3,20 +3,21 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using NUnit.Framework;
+using WonderTools.Dokt;
 using WonderTools.Flug;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
     public class RequestHeaderTests
     {
-        FlugHttpMessageHandler _messageHandler;
+        DoktHttpMessageHandler _messageHandler;
         HttpClient _client;
         private string _defaultUri = @"https://www.google.com/";
 
         [SetUp]
         public void SetUp()
         {
-            _messageHandler = new FlugHttpMessageHandler();
+            _messageHandler = new DoktHttpMessageHandler();
             _client = new HttpClient(_messageHandler);
         }
 

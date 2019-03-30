@@ -1,10 +1,11 @@
 ﻿using System.Net.Http;
+using WonderTools.Dokt;
 
 namespace WonderTools.Flug
 {
     public static class RequestMethodExtensions
     {
-        public static IRequestMatchingRuleBuilder WhenRequest(this FlugHttpMessageHandler messageHandler, HttpMethod method)
+        public static IRequestMatchingRuleBuilder WhenRequest(this DoktHttpMessageHandler messageHandler, HttpMethod method)
         {
             return messageHandler.WhenRequest().WithMethod(method);
         }
@@ -19,7 +20,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Post);
         }
 
-        public static IRequestMatchingRuleBuilder WhenPost(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenPost(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Post);
         }
@@ -30,7 +31,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Get);
         }
 
-        public static IRequestMatchingRuleBuilder WhenGet(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenGet(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Get);
         }
@@ -41,7 +42,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Options);
         }
 
-        public static IRequestMatchingRuleBuilder WhenOption(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenOption(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Options);
         }
@@ -51,7 +52,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Delete);
         }
 
-        public static IRequestMatchingRuleBuilder WhenDelete(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenDelete(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Delete);
         }
@@ -61,7 +62,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Put);
         }
 
-        public static IRequestMatchingRuleBuilder WhenPut(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenPut(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Put);
         }
@@ -71,7 +72,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Patch);
         }
 
-        public static IRequestMatchingRuleBuilder WhenPatch(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenPatch(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Patch);
         }
@@ -81,7 +82,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Head);
         }
 
-        public static IRequestMatchingRuleBuilder WhenHead(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenHead(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Head);
         }
@@ -91,7 +92,7 @@ namespace WonderTools.Flug
             return ruleBuilder.WithMethod(HttpMethod.Trace);
         }
 
-        public static IRequestMatchingRuleBuilder WhenTrace(this FlugHttpMessageHandler handler)
+        public static IRequestMatchingRuleBuilder WhenTrace(this DoktHttpMessageHandler handler)
         {
             return handler.WhenRequest(HttpMethod.Trace);
         }
