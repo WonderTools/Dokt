@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace WonderTools.FakeHttpClient.ResponseRules
+namespace WonderTools.FakeHttpClient
 {
-    public static class RuleStatusCodeExtensions
+    public static class ResponseStatusCodeExtensions
     {
         public static IResponseMakingRuleBuilder UsingStatusCode(this IResponseMakingRuleBuilder ruleBuilder, HttpStatusCode statusCode)
         {

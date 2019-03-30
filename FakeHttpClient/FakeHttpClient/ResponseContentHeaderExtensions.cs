@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 
 namespace WonderTools.FakeHttpClient
 {
-    public static class HttpContentExtension
+    public static class ResponseContentHeaderExtensions
     {
         public static HttpContent CreateContent(this string content)
         {

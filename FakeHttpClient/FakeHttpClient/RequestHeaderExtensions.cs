@@ -2,7 +2,7 @@
 
 namespace WonderTools.FakeHttpClient.RequestRules
 {
-    public static class RuleRequestHeadersExtension
+    public static class RequestHeaderExtensions
     {
         public static IRequestMatchingRuleBuilder WithAcceptHeader(this IRequestMatchingRuleBuilder ruleBuilder, string mediaType)
         {

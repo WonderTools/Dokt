@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using NUnit.Framework;
 using WonderTools.FakeHttpClient.RequestRules;
-using WonderTools.FakeHttpClient.ResponseRules;
 
 namespace WonderTools.FakeHttpClient.Tests
 {
@@ -43,7 +42,6 @@ namespace WonderTools.FakeHttpClient.Tests
                 .UsingContent(new StringContent(content)).UsingContentType(contentType).UsingStatusCode(responseHttpCode);
 
             var response = _client.GetAsync(new Uri(_defaultUri)).Result;
-
             Assert.AreEqual(contentType, response.Content.Headers.ContentType.ToString());
             
         }

@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
 
-namespace WonderTools.FakeHttpClient.ResponseRules
+namespace WonderTools.FakeHttpClient
 {
-    public static class RuleResponseHeadersExtension
+    public static class ResponseHeaderExtensions
     {
         public static IResponseMakingRuleBuilder UsingAcceptRangeHeader(this IResponseMakingRuleBuilder ruleBuilder, string range)
         {

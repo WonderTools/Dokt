@@ -2,7 +2,7 @@
 
 namespace WonderTools.FakeHttpClient.RequestRules
 {
-    public static class RuleUriExtensions
+    public static class RequestUriExtensions
     {
         public static IRequestMatchingRuleBuilder WithUri(this IRequestMatchingRuleBuilder ruleBuilder, string uri)
         {

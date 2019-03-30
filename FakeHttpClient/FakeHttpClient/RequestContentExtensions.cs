@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 
-namespace WonderTools.FakeHttpClient.RequestRules
+namespace WonderTools.FakeHttpClient
 {
-    public static class RuleRequestBodyExtension
+    public static class RequestContentExtensions
     {
         public static IRequestMatchingRuleBuilder WithContent(this IRequestMatchingRuleBuilder ruleBuilder, HttpContent content)
         {
