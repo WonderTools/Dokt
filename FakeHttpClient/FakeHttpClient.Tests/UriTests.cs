@@ -7,13 +7,13 @@ namespace WonderTools.FakeHttpClient.Tests
 {
     public class UriTests
     {
-        MockableHttpMessageHandler _messageHandler;
+        FlugHttpMessageHandler _messageHandler;
         HttpClient _client;
 
         [SetUp]
         public void SetUp()
         {
-            _messageHandler = new MockableHttpMessageHandler();
+            _messageHandler = new FlugHttpMessageHandler();
             _client = new HttpClient(_messageHandler);
         }
 

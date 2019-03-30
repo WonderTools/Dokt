@@ -9,14 +9,14 @@ namespace WonderTools.FakeHttpClient.Tests
 {
     public class RequestBodyTests
     {
-        MockableHttpMessageHandler _messageHandler;
+        FlugHttpMessageHandler _messageHandler;
         HttpClient _client;
         private string _defaultUri = @"https://www.google.com/";
 
         [SetUp]
         public void SetUp()
         {
-            _messageHandler = new MockableHttpMessageHandler();
+            _messageHandler = new FlugHttpMessageHandler();
             _client = new HttpClient(_messageHandler);
         }
 

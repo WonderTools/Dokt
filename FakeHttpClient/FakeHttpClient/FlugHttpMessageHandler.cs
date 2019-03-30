@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WonderTools.FakeHttpClient
 {
-    public class MockableHttpMessageHandler : HttpMessageHandler
+    public class FlugHttpMessageHandler : HttpMessageHandler
     {
         private readonly List<RuleBuilder> _rules = new List<RuleBuilder>();
 
