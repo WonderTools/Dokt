@@ -17,9 +17,9 @@ Wiremock is a library for stubbing and mocking web servieces. It constructs a HT
 Mocking a HttpMessageHandler by creating a mock object of HttpMessageHandler and injecting it into constructor of HttpClient.But mocking it doesn't provide good readability makes it more complex during configuration.
 
 ## Dokt's style
-//HttpMessageHandler is what does the sending of request and re in HttpClient.
-//In Dokt, we have created a FakeMessageHandler. This fake message handler is configurable, to respond with any response for specified requests.
-THere are also mechanism to throw Exception and excute calls  backs 
+HttpMessageHandler allows you to configure response based on specific request and allow you to send the configured response.
+In Dokt, we have created a FakeMessageHandler. This fake message handler is configurable, to respond with any response for specified requests.
+There are also mechanism to throw Exception and excute calls backs 
 
 ## Features
 1. Respond for a specified request
@@ -27,7 +27,7 @@ THere are also mechanism to throw Exception and excute calls  backs
 3. Execute callback for a specified request
 4. Linq for configuration
 
-**Example 1: ** 
+**Example 1: Uri configuration** 
 ```
 var _messageHandler = new DoktHttpMessageHandler();
 var client = new HttpClient(_messageHandler);
@@ -51,4 +51,15 @@ var response = _client.GetAsync(new Uri(_defaultUri)).Result;
 var result = response.Content.ReadAsStringAsync().Result;
 
 Assert.AreEqual(content, result);
+```
+**Example 3: Response Header configuration** 
+```
+ var responseHttpCode = HttpStatusCode.Accepted;
+ var responseRange = "byte";
+ 
+ _messageHandler.WhenRequest().WithUri(_defaultUri).Respond().UsingAcceptRangeHeader(responseRange).UsingStatusCode(responseHttpCode);
+var response = _client.GetAsync(new Uri("https://www.google.com")).Result
+
+Assert.AreEqual(responseRange, response.Headers.AcceptRanges.ToString());
+Assert.AreEqual(responseHttpCode, response.StatusCode);
 ```
