@@ -34,9 +34,9 @@ var client = new HttpClient(_messageHandler);
 var responseHttpCode = HttpStatusCode.Accepted;
 var content = "test";
 
-_messageHandler.WhenRequest().WithUri(_defaultUri).Respond(content).UsingStatusCode(responseHttpCode);
+_messageHandler.WhenRequest().WithUri("https://www.google.com").Respond(content).UsingStatusCode(responseHttpCode);
 
- var response = _client.GetAsync(new Uri(_defaultUri)).Result;
+ var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
  var result = response.Content.ReadAsStringAsync().Result;
 
  Assert.AreEqual(content, result);
@@ -45,9 +45,9 @@ _messageHandler.WhenRequest().WithUri(_defaultUri).Respond(content).UsingStatusC
 ```
 var responseHttpCode = HttpStatusCode.Accepted;
 var content = "test";
-_messageHandler.WhenRequest().WithUri(_defaultUri).Respond(content).UsingStatusCode(responseHttpCode);
+_messageHandler.WhenRequest().WithUri("https://www.google.com").Respond(content).UsingStatusCode(responseHttpCode);
 
-var response = _client.GetAsync(new Uri(_defaultUri)).Result;
+var response = _client.GetAsync(new Uri("https://www.google.com")).Result;
 var result = response.Content.ReadAsStringAsync().Result;
 
 Assert.AreEqual(content, result);
@@ -62,4 +62,30 @@ var response = _client.GetAsync(new Uri("https://www.google.com")).Result
 
 Assert.AreEqual(responseRange, response.Headers.AcceptRanges.ToString());
 Assert.AreEqual(responseHttpCode, response.StatusCode);
+```
+**Example 4: Call backs configuration** 
+```
+var responseHttpCode = HttpStatusCode.Accepted;
+var isCalled = false;
+Action<HttpRequestMessage> callBackAction = (x) => { isCalled = true; };
+_messageHandler.WhenRequest().WithUri(uri).Execute(callBackAction).Respond()
+                .UsingStatusCode(responseHttpCode);
+
+_client.GetAsync(uri);
+
+Assert.IsTrue(isCalled);
+```
+**Example 5: Exception configuration** 
+```
+var responseHttpCode = HttpStatusCode.Accepted;
+var exception = new ArgumentException();
+_messageHandler.WhenRequest().WithUri("https://www.google.com").Throw((r) => exception);
+try
+{
+  await _client.GetAsync("https://www.google.com");
+}
+catch (Exception e)
+{
+   Assert.AreEqual(exception.GetType(),e.GetType());
+}
 ```
