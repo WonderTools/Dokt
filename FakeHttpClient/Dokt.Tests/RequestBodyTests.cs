@@ -27,7 +27,7 @@ namespace WonderTools.Dokt.Tests
             _messageHandler
                 .WhenRequest()
                     .WithUri(_defaultUri)
-                    .WithContent(withContentEncoding)
+                    .WithContent(x=>x.ReadAsStringAsync().Result.Equals(content))
                 .Respond()
                     .UsingStatusCode(responseHttpCode);
 
