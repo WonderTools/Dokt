@@ -24,7 +24,6 @@ namespace WonderTools.Dokt.Tests
             var responseHttpCode = HttpStatusCode.Accepted;
             var content = "test";
             var withContentEncoding = new StringContent(content);
-
             _messageHandler
                 .WhenRequest()
                     .WithUri(_defaultUri)
