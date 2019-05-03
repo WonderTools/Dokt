@@ -22,6 +22,7 @@ In Dokt, we have created a FakeMessageHandler. This fake message handler is conf
 There are also mechanism to throw Exception and excute calls backs 
 
 ## Features
+Sample usage : https://github.com/WonderTools/Dokt.Example
 1. Respond for a specified request
 2. Throw excption for a specified request
 3. Execute callback for a specified request
